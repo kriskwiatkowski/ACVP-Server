@@ -16,6 +16,8 @@ public class PromptProjectionContractResolver : ProjectionContractResolverBase<T
             nameof(TestGroup.LmsMode),
             nameof(TestGroup.LmOtsMode), 
             nameof(TestGroup.Tests),
+            nameof(TestGroup.Seed),
+            nameof(TestGroup.I),
         };
 
         if (includeProperties.Contains(jsonProperty.UnderlyingName, StringComparer.OrdinalIgnoreCase))

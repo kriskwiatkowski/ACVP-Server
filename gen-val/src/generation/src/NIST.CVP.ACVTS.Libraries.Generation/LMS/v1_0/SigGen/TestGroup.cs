@@ -17,6 +17,10 @@ public class TestGroup : ITestGroup<TestGroup, TestCase>
     
     [JsonIgnore]
     public ILmsKeyPair KeyPair { get; set; }
+    [JsonProperty(PropertyName = "seed")]
+    public BitString Seed { get; set; }
+    [JsonProperty(PropertyName = "i")]
+    public BitString I { get; set; }
     public BitString PublicKey { get; set; }
     
     public List<TestCase> Tests { get; set; } = new();

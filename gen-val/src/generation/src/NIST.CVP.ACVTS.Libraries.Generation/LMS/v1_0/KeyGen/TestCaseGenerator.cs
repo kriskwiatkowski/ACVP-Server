@@ -26,8 +26,8 @@ namespace NIST.CVP.ACVTS.Libraries.Generation.LMS.v1_0.KeyGen
             // Trim the group down if the keys take a long time to generate
             NumberOfTestCasesToGenerate = AttributesHelper.GetLmsAttribute(group.LmsMode).H switch
             {
-                5 => 5,
-                10 => 4,
+                5 =>  20,
+                10 => 20,
                 15 => 3,
                 20 => 2,
                 25 => 1,

@@ -88,6 +88,8 @@ public class TestGroupGenerator : ITestGroupGeneratorAsync<Parameters, TestGroup
                 var key = value.Result;
                 group.KeyPair = key.KeyPair;
                 group.PublicKey = new BitString(key.KeyPair.PublicKey.Key);
+                group.I = new BitString(key.KeyPair.PrivateKey.I);
+                group.Seed = new BitString(key.KeyPair.PrivateKey.Seed);
                 testGroups.Add(group);
             }
         }
