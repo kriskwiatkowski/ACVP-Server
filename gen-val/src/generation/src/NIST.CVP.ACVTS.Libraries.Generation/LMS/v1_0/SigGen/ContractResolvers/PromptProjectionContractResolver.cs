@@ -33,7 +33,8 @@ public class PromptProjectionContractResolver : ProjectionContractResolverBase<T
         var includeProperties = new[]
         {
             nameof(TestCase.TestCaseId), 
-            nameof(TestCase.Message)
+            nameof(TestCase.Message),
+            nameof(TestCase.Q)
         };
 
         if (includeProperties.Contains(jsonProperty.UnderlyingName, StringComparer.OrdinalIgnoreCase))

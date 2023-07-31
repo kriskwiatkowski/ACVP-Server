@@ -41,7 +41,8 @@ public class OracleObserverLmsSignatureCaseGrain : ObservableOracleGrainBase<Lms
 
         // We don't actually track the state of the tree so pick a random Q in the tree. This is done for every individual test case, so there is a slight chance a Q is duplicated in samples
         var leafCount = 1 << _param.LmsKeyPair.LmsAttribute.H;
-        _param.LmsKeyPair.PrivateKey.SetQ(_random.GetRandomInt(0, leafCount));
+        int q = _random.GetRandomInt(0, leafCount);
+        _param.LmsKeyPair.PrivateKey.SetQ(q);
         
         // Sign the message
         var result = _lmsSigner.Sign(_param.LmsKeyPair.PrivateKey, _randomizerC, message.ToBytes());
@@ -50,7 +51,8 @@ public class OracleObserverLmsSignatureCaseGrain : ObservableOracleGrainBase<Lms
         await Notify(new LmsSignatureResult
         {
             Message = message,
-            Signature = new BitString(result.Signature)
+            Signature = new BitString(result.Signature),
+            Q = q,
         });
     }
 }

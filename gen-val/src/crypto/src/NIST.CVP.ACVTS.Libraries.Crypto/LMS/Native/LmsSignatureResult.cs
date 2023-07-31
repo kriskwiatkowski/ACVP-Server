@@ -12,6 +12,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.LMS.Native
         public LmsSignatureResult()
         {
             Exhausted = true;
+            Q = 0;
         }
 
         /// <summary>
@@ -27,5 +28,6 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.LMS.Native
 
         public bool Exhausted { get; }
         public byte[] Signature { get; }
+        public int Q { get; }
     }
 }

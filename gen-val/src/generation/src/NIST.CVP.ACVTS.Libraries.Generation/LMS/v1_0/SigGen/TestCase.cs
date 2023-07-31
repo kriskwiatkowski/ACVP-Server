@@ -18,4 +18,5 @@ public class TestCase : ITestCase<TestGroup, TestCase>
 
     public BitString Message { get; set; }
     public BitString Signature { get; set; }
+    public int Q { get; set; }
 }
