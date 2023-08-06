@@ -28,9 +28,9 @@ namespace NIST.CVP.ACVTS.Libraries.Generation.LMS.v1_0.KeyGen
             {
                 5 =>  20,
                 10 => 20,
-                15 => 3,
-                20 => 2,
-                25 => 1,
+                15 => 20,
+                20 => 20,
+                25 => 20,
                 _ => NumberOfTestCasesToGenerate
             };
 
