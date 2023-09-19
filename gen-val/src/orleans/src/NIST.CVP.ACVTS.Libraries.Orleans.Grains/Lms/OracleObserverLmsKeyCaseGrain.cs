@@ -5,6 +5,7 @@ using NIST.CVP.ACVTS.Libraries.Math.Entropy;
 using NIST.CVP.ACVTS.Libraries.Oracle.Abstractions.ParameterTypes.Lms;
 using NIST.CVP.ACVTS.Libraries.Oracle.Abstractions.ResultTypes;
 using NIST.CVP.ACVTS.Libraries.Orleans.Grains.Interfaces.Lms.Native;
+using NIST.CVP.ACVTS.Libraries.Crypto.Common.Asymmetric.LMS.Native.Helpers;
 
 namespace NIST.CVP.ACVTS.Libraries.Orleans.Grains.Lms
 {
@@ -35,7 +36,7 @@ namespace NIST.CVP.ACVTS.Libraries.Orleans.Grains.Lms
 
         protected override async Task DoWorkAsync()
         {
-            var seed = _entropyProvider.GetEntropy(256);
+            var seed = _entropyProvider.GetEntropy(AttributesHelper.GetLmsAttribute(_param.LmsMode).M * 8);
             var i = _entropyProvider.GetEntropy(128);
 
             var lmsKey = _lmsKeyPairFactory.GetKeyPair(_param.LmsMode, _param.LmOtsMode, i.ToBytes(), seed.ToBytes());
