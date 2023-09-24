@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using NIST.CVP.ACVTS.Libraries.Crypto.Common.Asymmetric.LMS.Native.Helpers;
 using NIST.CVP.ACVTS.Libraries.Generation.Core;
 using NIST.CVP.ACVTS.Libraries.Generation.Core.Async;
 using NIST.CVP.ACVTS.Libraries.Oracle.Abstractions;
@@ -9,17 +10,33 @@ using NLog;
 
 namespace NIST.CVP.ACVTS.Libraries.Generation.LMS.v1_0.SigGen;
 
-public class TestCaseGeneratorAft : ITestCaseGeneratorAsync<TestGroup, TestCase>
+public class TestCaseGeneratorAft : ITestCaseGeneratorWithPrep<TestGroup, TestCase>
 {
     private readonly IOracle _oracle;
 
-    public int NumberOfTestCasesToGenerate => 20;
+    public int NumberOfTestCasesToGenerate { get; private set; } = 20;
 
     public TestCaseGeneratorAft(IOracle oracle)
     {
         _oracle = oracle;
     }    
-    
+
+    public GenerateResponse PrepareGenerator(TestGroup group, bool isSample)
+    {
+        // Trim the group down if the keys take a long time to generate
+        NumberOfTestCasesToGenerate = AttributesHelper.GetLmsAttribute(group.LmsMode).H switch
+        {
+            5 =>  20,
+            10 => 20,
+            15 => 10,
+            20 => 5,
+            25 => 5,
+            _ => NumberOfTestCasesToGenerate
+        };
+
+        return new GenerateResponse();
+    }
+
     public async Task<TestCaseGenerateResponse<TestGroup, TestCase>> GenerateAsync(TestGroup group, bool isSample, int caseNo = -1)
     {
         var param = new LmsSignatureParameters
