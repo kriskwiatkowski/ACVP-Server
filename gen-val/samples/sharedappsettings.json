@@ -5,7 +5,7 @@
         "OrleansNodeConfig": [
           {
             "HostName":  "localhost",
-            "MaxConcurrentWork" : 3
+            "MaxConcurrentWork" : 20
           }
         ],
         "OrleansSiloPort": 8000,
@@ -16,6 +16,6 @@
         "FallBackMinimumCores": 3,
         "LoadSheddingCpuThreshold": 0,
         "MaxWorkItemsToQueuePerGenValInstance": 100,
-        "TimeoutRetryAttempts": 15
+        "TimeoutRetryAttempts": 3
       }
 }
