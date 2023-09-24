@@ -14,6 +14,6 @@
         /// The maximum amount of simultaneous work taken on by the node in the cluster.
         /// Value should be *no more* than the total number of processors on the node minus 2.
         /// </summary>
-        public int MaxConcurrentWork { get; set; } = 2;
+        public int MaxConcurrentWork { get; set; } = 20;
     }
 }
